@@ -5,6 +5,7 @@ import {
   PRODUCT_LOADED,
   REMOVE_FROM_CART,
   REMOVE_PRODUCT,
+  UPDATE_PRODUCT,
 } from "../actionTypes/actionTypes";
 
 const initialState = {
@@ -19,9 +20,23 @@ const productReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ADD_PRODUCT:
+      if (selectedProduct) {
+        return {
+          ...state,
+          products: [...state.products, action.payload],
+        };
+      }
       return {
         ...state,
         products: [...state.products, action.payload],
+      };
+
+    case UPDATE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter(
+          (product) => product._id === action.payload._id
+        ),
       };
     case REMOVE_PRODUCT:
       return {

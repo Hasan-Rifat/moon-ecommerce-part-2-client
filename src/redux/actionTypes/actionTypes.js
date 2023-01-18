@@ -4,6 +4,8 @@ export const PRODUCT_LOADED = "PRODUCT_LOADED";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const LOAD_PRODUCTS = "LOAD_PRODUCTS";
+export const ADD_PRODUCTS = "ADD_PRODUCTS";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 // for filter
 export const TOGGLE_BRANDS = "TOGGLE_BRANDS";

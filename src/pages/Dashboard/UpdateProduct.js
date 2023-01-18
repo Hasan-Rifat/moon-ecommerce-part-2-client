@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import addProductData from "../../redux/thunk/addProductData";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import updateProductData from "../../redux/thunk/updateProduct";
 
-const AddProduct = () => {
+const UpdateProduct = () => {
+  const location = useLocation();
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-
+  const [product, setProduct] = useState(location.state);
+  console.log(product);
   const submit = (data) => {
-    const product = {
+    const item = {
       model: data.model,
       brand: data.brand,
       status: data.status === "true" ? true : false,
@@ -21,7 +24,7 @@ const AddProduct = () => {
       ],
       spec: [],
     };
-    dispatch(addProductData(product));
+    dispatch(updateProductData(item, product._id));
   };
 
   return (
@@ -34,29 +37,51 @@ const AddProduct = () => {
           <label className="mb-2" htmlFor="model">
             Model
           </label>
-          <input type="text" id="model" {...register("model")} />
+          <input
+            type="text"
+            defaultValue={product.model}
+            id="model"
+            {...register("model")}
+          />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="image">
             Image
           </label>
-          <input type="text" name="image" id="image" {...register("image")} />
+          <input
+            defaultValue={product.image}
+            type="text"
+            name="image"
+            id="image"
+            {...register("image")}
+          />
         </div>
 
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-3" htmlFor="brand">
             Brand
           </label>
-          <select name="brand" id="brand" {...register("brand")}>
+          <select
+            defaultValue={product.brand}
+            name="brand"
+            id="brand"
+            {...register("brand")}
+          >
             <option value="amd">AMD</option>
             <option value="intel">Intel</option>
           </select>
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="price">
-            Image
+            price
           </label>
-          <input type="text" name="price" id="price" {...register("price")} />
+          <input
+            defaultValue={product.price}
+            type="text"
+            name="price"
+            id="price"
+            {...register("price")}
+          />
         </div>
 
         <div className="flex flex-col w-full max-w-xs">
@@ -146,4 +171,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;
