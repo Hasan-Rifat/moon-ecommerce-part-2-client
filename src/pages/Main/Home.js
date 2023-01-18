@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard";
 import { toggleBrands, toggleStock } from "../../redux/actions/filterActions";
+import loadProductData from "../../redux/thunk/fetchProduct";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state) => state.product.products);
+  useEffect(() => {
+    dispatch(loadProductData());
+  }, [dispatch]);
   const filter = useSelector((state) => state.filter.filter);
   const { stock, brands } = filter;
-  useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.data));
-  }, []);
 
   let allProducts;
-  const activeClass = "text-white  bg-indigo-500 border-white";
 
   if (products.length) {
     allProducts = products.map((product) => (
@@ -38,6 +36,7 @@ const Home = () => {
       })
       .map((product) => <ProductCard key={product.model} product={product} />);
   }
+  const activeClass = "text-white  bg-indigo-500 border-white";
 
   return (
     <div className="max-w-7xl gap-14 mx-auto my-10">

@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCT,
   ADD_TO_CART,
+  LOAD_PRODUCTS,
   PRODUCT_LOADED,
   REMOVE_FROM_CART,
   REMOVE_PRODUCT,
@@ -66,6 +67,11 @@ const productReducer = (state = initialState, action) => {
       };
 
     case PRODUCT_LOADED:
+      return {
+        ...state,
+        products: action.payload,
+      };
+    case LOAD_PRODUCTS:
       return {
         ...state,
         products: action.payload,
