@@ -2,13 +2,16 @@ import { addProduct } from "../actions/productAction";
 
 const addProductData = (product) => {
   return async (dispatch, getState) => {
-    const res = await fetch("http://localhost:5000/product", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
+    const res = await fetch(
+      "https://moon-ecommerce-part-2-server.vercel.app/product",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    );
     const data = await res.json();
     if (data.acknowledged) {
       dispatch(
