@@ -10,7 +10,6 @@ const updateProductData = (product, id) => {
       body: JSON.stringify(product),
     });
     const data = await res.json();
-    console.log(data);
     if (data.acknowledged) {
       dispatch(updateProduct(product));
     }

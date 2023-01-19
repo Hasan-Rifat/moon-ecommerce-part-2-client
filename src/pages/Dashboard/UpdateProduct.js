@@ -9,7 +9,6 @@ const UpdateProduct = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const [product, setProduct] = useState(location.state);
-  console.log(product);
   const submit = (data) => {
     const item = {
       model: data.model,

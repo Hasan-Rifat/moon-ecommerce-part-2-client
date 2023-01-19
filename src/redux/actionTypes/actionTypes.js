@@ -10,3 +10,6 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 // for filter
 export const TOGGLE_BRANDS = "TOGGLE_BRANDS";
 export const TOGGLE_STOCK = "TOGGLE_STOCK";
+export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
+export const REMOVE_STOCK = "REMOVE_STOCK";
+export const REMOVE_BRANDS = "REMOVE_BRANDS";

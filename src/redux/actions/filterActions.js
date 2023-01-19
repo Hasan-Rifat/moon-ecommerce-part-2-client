@@ -1,4 +1,10 @@
-import { TOGGLE_BRANDS, TOGGLE_STOCK } from "../actionTypes/actionTypes";
+import {
+  REMOVE_BRANDS,
+  REMOVE_STOCK,
+  SEARCH_PRODUCT,
+  TOGGLE_BRANDS,
+  TOGGLE_STOCK,
+} from "../actionTypes/actionTypes";
 
 export const toggleBrands = (brand) => {
   return {
@@ -9,5 +15,21 @@ export const toggleBrands = (brand) => {
 export const toggleStock = () => {
   return {
     type: TOGGLE_STOCK,
+  };
+};
+export const searchProduct = (value) => {
+  return {
+    type: SEARCH_PRODUCT,
+    payload: value,
+  };
+};
+export const removeStock = () => {
+  return {
+    type: REMOVE_STOCK,
+  };
+};
+export const removeBrands = () => {
+  return {
+    type: REMOVE_BRANDS,
   };
 };
